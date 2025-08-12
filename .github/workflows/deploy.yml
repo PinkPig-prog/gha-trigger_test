@@ -1,0 +1,16 @@
+name: Deploy Model
+
+on:
+  workflow_dispatch:
+    inputs:
+      metadata:
+        description: "Model metadata"
+        required: true
+        default: "default-meta"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Metadata
+        run: echo "Received metadata: ${{ github.event.inputs.metadata }}"
