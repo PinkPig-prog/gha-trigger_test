@@ -26,12 +26,15 @@ jobs:
           echo "Version: ${{ github.event.inputs.model_version }}"
           echo "Deploying to: ${{ github.event.inputs.deploy_target }}"
 
-      - name: Build Docker image
+      - name: Mock Docker build
         run: |
-          docker build -t my-model:${{ github.event.inputs.model_version }} .
+          echo "Pretending to build image for model: ${{ github.event.inputs.model_name }}"
+          echo "Version: ${{ github.event.inputs.model_version }}"
+          # need to add actual docker build commands
+
 
       - name: Deploy to target
         run: |
           echo "Deploying to ${{ github.event.inputs.deploy_target }}..."
-          # You can add AWS CLI, GCP CLI, or kubectl commands here
+          # need to add AWS CLI, GCP CLI, or kubectl commands 
 
