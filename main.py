@@ -1,4 +1,3 @@
-# fastapi_trigger.py
 from fastapi import FastAPI, Body
 import os
 import requests
@@ -8,11 +7,10 @@ load_dotenv()
 
 app = FastAPI()
 
-# GitHub repo details
-OWNER = "PinkPig-prog"   # GitHub username or org
-REPO = "gha-trigger_test"       # repo containing the workflow
-WORKFLOW_FILE = "deploy.yml"  # name of workflow file inside .github/workflows/
-TOKEN = os.getenv("GITHUB_TOKEN")  # your PAT
+OWNER = "PinkPig-prog"   
+REPO = "gha-trigger_test"      
+WORKFLOW_FILE = "deploy.yml"  
+TOKEN = os.getenv("GITHUB_TOKEN") 
 
 @app.post("/deploy-model")
 def deploy_model(config: dict = Body(...)):
@@ -25,9 +23,8 @@ def deploy_model(config: dict = Body(...)):
     url = f"https://api.github.com/repos/{OWNER}/{REPO}/actions/workflows/{WORKFLOW_FILE}/dispatches"
     headers = {"Authorization": f"token {TOKEN}"}
     
-    # Pass config details as inputs to the workflow
     data = {
-        "ref": "main",   # branch name
+        "ref": "main", 
         "inputs": config
     }
 
